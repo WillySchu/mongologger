@@ -6,11 +6,12 @@ class MongoLog {
    * If a string is provided it is put on the message property of the
    * MongoLog Object. If an object is provided each key on the object is
    * put on the MongoLog Object.
-   * @param Object or String the message or key value pairs to be logged
    * @param Monk Collection Object
+   * @param Object or String the message or key value pairs to be logged
+   * @param Number log level
    * @returns MongoLog Object
    */
-  constructor(log, db) {
+  constructor(db, log, level) {
 
     if (typeof log === 'object') {
       Object.keys(log).forEach(key => {
@@ -25,11 +26,18 @@ class MongoLog {
     } else {
       throw new TypeError(`Invalid value for db: ${db}`);
     }
+
+    if (typeof level === 'number') {
+      this.level = level;
+    } else {
+      this.level = 1;
+    }
+
+    this.timestamp = new Date();
   }
 
   /**
    * Saves a new MongoLog Object to mongo
-   * @returns MongoLog Object
    */
   save() {
     return new Promise((resolve, reject) => {
