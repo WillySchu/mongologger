@@ -1,8 +1,8 @@
 {
-  "name": "mongologger",
+  "name": "mongo-logger",
   "version": "0.0.0",
   "description": "A tool for saving logs in mongo",
-  "main": "index.js",
+  "main": "logger.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
